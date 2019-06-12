@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Pet from "./Pet/Pet";
 import SelectPetType from "./SelectPetType/SelectPetType";
-import PetGender from './PetGender/PetGender';
+import PetGender from "./PetGender/PetGender";
 import "./App.css";
 
 import Tabletop from "tabletop";
@@ -14,7 +14,7 @@ class App extends Component {
       pets: [],
       petType: [],
       selectedPet: "",
-      selectedGender: ''
+      selectedGender: ""
     };
   }
 
@@ -53,12 +53,18 @@ Initialization that requires DOM nodes should go here. If you need to load
   selectGenderHandler = e => {
     this.setState({
       selectedGender: e.target.value
-    })
-    console.log("selected gender",e.target.value);
-  }
+    });
+    console.log("selected gender", e.target.value);
+  };
 
   render() {
-    const { isLoading, pets, petType, selectedPet, selectedGender, } = this.state;
+    const {
+      isLoading,
+      pets,
+      petType,
+      selectedPet,
+      selectedGender
+    } = this.state;
     return (
       <div className="App">
         <h1>Pet Catalog</h1>
@@ -67,19 +73,23 @@ Initialization that requires DOM nodes should go here. If you need to load
           petType={petType}
         />
 
-        <PetGender 
-        selectedGenderHandler={this.selectGenderHandler}
-        selectedGender={selectedGender}/>
+        <PetGender
+          selectedGenderHandler={this.selectGenderHandler}
+          selectedGender={selectedGender}
+        />
 
         {/* If isLoading property is false and the array pets is no empty anymore,
          the .map method will iterate through the array and will return a list of 
          all the pets in the array*/}
 
-        {!isLoading && pets.length > 0 && selectedPet.length > 0 && !selectedGender
+        {!isLoading &&
+        pets.length > 0 &&
+        selectedPet.length > 0 &&
+        !selectedGender
           ? pets
               .filter(pet => {
-                return pet.animal_type === selectedPet 
-              } ).filter(pet => pet.Animal_Gender === selectedGender)
+                return pet.animal_type === selectedPet;
+              })
               .map((pet, i) => {
                 return (
                   <Pet
@@ -91,18 +101,20 @@ Initialization that requires DOM nodes should go here. If you need to load
                   />
                 );
               })
-          : pets.map((pet, i) => {
-              return (
-                <Pet
-                  key={pet.Animal_ID + i}
-                  name={pet.Animal_Name}
-                  petType={pet.animal_type}
-                  petGender={pet.Animal_Gender}
-                  petBreed={pet.Animal_Breed}
-                  petLocation={pet.Address}
-                />
-              );
-            })}
+          : pets
+              .filter(pet => pet.Animal_Gender === selectedGender)
+              .map((pet, i) => {
+                return (
+                  <Pet
+                    key={pet.Animal_ID + i}
+                    name={pet.Animal_Name}
+                    petType={pet.animal_type}
+                    petGender={pet.Animal_Gender}
+                    petBreed={pet.Animal_Breed}
+                    petLocation={pet.Address}
+                  />
+                );
+              })}
         {isLoading ? <div>Loading...</div> : null}
       </div>
     );
