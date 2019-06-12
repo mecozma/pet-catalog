@@ -8,6 +8,7 @@ const Pet = props => {
         Pet type: {props.petType}. Breed: {props.petBreed}
       </h3>
       <h4>Name: {props.name}</h4>
+      <h4>Gender: {props.petGender}</h4>
       <h5>Pet location: {props.petLocation}</h5>
     </div>
   );
