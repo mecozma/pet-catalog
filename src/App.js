@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import Pet from "./Pet/Pet";
 import SelectPetType from "./SelectPetType/SelectPetType";
 import PetGender from "./PetGender/PetGender";
+
 import "./App.css";
 
 import Tabletop from "tabletop";
+import SearchAddress from "./SearchAddress/SearchAddress";
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +16,10 @@ class App extends Component {
       pets: [],
       petType: [],
       selectedPet: "",
-      selectedGender: ""
+      selectedGender: "",
+      petAddress: [],
+      suggestions: [],
+      inputValue: ''
     };
   }
 
@@ -33,11 +38,21 @@ Initialization that requires DOM nodes should go here. If you need to load
             animalType.push(el.animal_type)
           );
         });
+
+        let animalAddress = [];
+        googleData.map(el => {
+          return (
+            !animalAddress.includes(el.Address) &&
+            animalAddress.push(el.Address)
+          );
+        });
+
         console.log(googleData);
         this.setState({
           pets: googleData,
           isLoading: false,
-          petType: animalType
+          petType: animalType,
+          petAddress: animalAddress
         });
       },
       simpleSheet: true
@@ -57,13 +72,38 @@ Initialization that requires DOM nodes should go here. If you need to load
     console.log("selected gender", e.target.value);
   };
 
+  addressInputHandler = e => {
+    const { petAddress } = this.state;
+    let value = e;
+    let suggestionsS = [];
+    if (value.length > 0) {
+      const regex = new RegExp(`^${value}`, "i");
+      suggestionsS = petAddress.sort().filter(el => regex.test(el));
+    }
+    console.log(e)
+    this.setState({
+      suggestions: suggestionsS,
+      inputValue: value
+    });
+  };
+
+  suggestionSelected = (value) => {
+    this.setState({
+      inputValue: value,
+      suggestions: []
+    })
+  }
+
   render() {
     const {
       isLoading,
       pets,
       petType,
       selectedPet,
-      selectedGender
+      selectedGender,
+      petAddress,
+      suggestions,
+      inputValue
     } = this.state;
     return (
       <div className="App">
@@ -77,6 +117,16 @@ Initialization that requires DOM nodes should go here. If you need to load
           selectedGenderHandler={this.selectGenderHandler}
           selectedGender={selectedGender}
         />
+
+       
+          <SearchAddress
+          onclick={this.suggestionSelected}
+            onchange={this.addressInputHandler}
+            addresses={petAddress}
+            text={inputValue}
+            suggestions={suggestions}
+          />
+        
 
         {/* If isLoading property is false and the array pets is no empty anymore,
          the .map method will iterate through the array and will return a list of 
