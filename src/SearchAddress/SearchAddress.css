@@ -1,0 +1,33 @@
+.SearchAddress {
+  width: 100%;
+  border: 1px solid grey;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px 1px rgba(0, 0, 0, 0.18);
+}
+
+.SearchAddress input {
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  padding: 12px 6px;
+}
+
+.SearchAddress ul {
+  list-style: none;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid gray;
+}
+
+.SearchAddress ul::before {
+  content: "";
+}
+
+.SearchAddress ul li {
+  padding: 12px 6px;
+  cursor: pointer;
+}
+
+.SearchAddress ul li:hover {
+  background-color: #ccc;
+}

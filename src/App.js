@@ -19,7 +19,7 @@ class App extends Component {
       selectedGender: "",
       petAddress: [],
       suggestions: [],
-      inputValue: ''
+      inputValue: ""
     };
   }
 
@@ -80,19 +80,19 @@ Initialization that requires DOM nodes should go here. If you need to load
       const regex = new RegExp(`^${value}`, "i");
       suggestionsS = petAddress.sort().filter(el => regex.test(el));
     }
-    console.log(e)
+    console.log(e);
     this.setState({
       suggestions: suggestionsS,
       inputValue: value
     });
   };
 
-  suggestionSelected = (value) => {
+  suggestionSelected = value => {
     this.setState({
       inputValue: value,
       suggestions: []
-    })
-  }
+    });
+  };
 
   render() {
     const {
@@ -118,15 +118,15 @@ Initialization that requires DOM nodes should go here. If you need to load
           selectedGender={selectedGender}
         />
 
-       
+        <div className="App__searchAddress">
           <SearchAddress
-          onclick={this.suggestionSelected}
+            onclick={this.suggestionSelected}
             onchange={this.addressInputHandler}
             addresses={petAddress}
             text={inputValue}
             suggestions={suggestions}
           />
-        
+        </div>
 
         {/* If isLoading property is false and the array pets is no empty anymore,
          the .map method will iterate through the array and will return a list of 
