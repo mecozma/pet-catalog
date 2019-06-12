@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Pet from "./Pet/Pet";
+import SelectPetType from "./SelectPetType/SelectPetType";
 import "./App.css";
 
 import Tabletop from "tabletop";
@@ -9,10 +10,13 @@ class App extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      pets: []
+      pets: [],
+      petType: [],
+      selectedPet: ""
     };
   }
-/* ComponentDidMount() is invoked immediately after a component is mounted. 
+
+  /* ComponentDidMount() is invoked immediately after a component is mounted. 
 Initialization that requires DOM nodes should go here. If you need to load
  data from a remote endpoint, this is a good place to instantiate the network
   request. Setting state in this method will trigger a re-rendering. */
@@ -20,25 +24,59 @@ Initialization that requires DOM nodes should go here. If you need to load
     Tabletop.init({
       key: "1IS_wjEiG_nUrnoOa49wOijx2Fgg5inYHYzpZePPnfn0",
       callback: googleData => {
+        let animalType = ["All Pets"];
+        googleData.map(el => {
+          return (
+            !animalType.includes(el.animal_type) &&
+            animalType.push(el.animal_type)
+          );
+        });
+
         this.setState({
           pets: googleData,
-          isLoading: false
+          isLoading: false,
+          petType: animalType
         });
-        console.log(this.state.pets);
       },
       simpleSheet: true
     });
   }
+
+  selectedPetHandler = e => {
+    this.setState({
+      selectedPet: e
+    });
+  };
+
   render() {
-    const { isLoading, pets } = this.state;
+    const { isLoading, pets, petType, selectedPet } = this.state;
+
     return (
       <div className="App">
-        <h1>Pet Catalog Test</h1>
+        <h1>Pet Catalog</h1>
+        <SelectPetType
+          selectedPetHandler={this.selectedPetHandler}
+          petType={petType}
+        />
         {/* If isLoading property is false and the array pets is no empty anymore,
          the .map method will iterate through the array and will return a list of 
          all the pets in the array*/}
-        {!isLoading && pets.length > 0
-          ? pets.map((pet, i) => {
+
+        {!isLoading && pets.length > 0 && selectedPet.length > 0
+          ? pets
+              .filter(pet => pet.animal_type === selectedPet)
+              .map((pet, i) => {
+                return (
+                  <Pet
+                    key={pet.Animal_ID + i}
+                    name={pet.Animal_Name}
+                    petType={pet.animal_type}
+                    petBreed={pet.Animal_Breed}
+                    petLocation={pet.Address}
+                  />
+                );
+              })
+          : pets.map((pet, i) => {
               return (
                 <Pet
                   key={pet.Animal_ID + i}
@@ -48,11 +86,8 @@ Initialization that requires DOM nodes should go here. If you need to load
                   petLocation={pet.Address}
                 />
               );
-            })
-          : null}
-        {
-          isLoading ? <div>Loading...</div> : null
-        }
+            })}
+        {isLoading ? <div>Loading...</div> : null}
       </div>
     );
   }
