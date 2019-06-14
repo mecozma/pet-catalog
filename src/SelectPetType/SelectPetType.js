@@ -1,17 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./SelectPetType.css";
 
 const SelectPetType = ({ petType, selectedPetHandler }) => {
   return (
-    <select onChange={e => selectedPetHandler(e.target.value)}>
-      {petType.map((el, i) => {
-        return (
-          <option key={el + i} value={el}>
-            {el}
-          </option>
-        );
-      })}
-    </select>
+    <div className="SelectPetType">
+      <select onChange={e => selectedPetHandler(e.target.value)}>
+        {petType.map((el, i) => {
+          return (
+            <option key={el + i} value={el}>
+              {el}
+            </option>
+          );
+        })}
+      </select>
+    </div>
   );
 };
 

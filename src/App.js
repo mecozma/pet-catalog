@@ -120,18 +120,25 @@ Initialization that requires DOM nodes should go here. If you need to load
     return (
       <div className="App">
         <h1>Pet Catalog</h1>
-        <SelectPetType
-          selectedPetHandler={this.selectedPetHandler}
-          petType={petType}
-        />
-
-        <PetGender
-          selectedGenderHandler={this.selectGenderHandler}
-          selectedGender={selectedGender}
-          petGenders={petGenders}
-        />
+        <div className="App__searchAddress">
+          <h3>Select pet category</h3>
+          <SelectPetType
+            selectedPetHandler={this.selectedPetHandler}
+            petType={petType}
+          />
+        </div>
 
         <div className="App__searchAddress">
+          <h3>Select gender</h3>
+          <PetGender
+            selectedGenderHandler={this.selectGenderHandler}
+            petGenders={petGenders}
+            selectedGender={selectedGender}
+          />
+        </div>
+
+        <div className="App__searchAddress">
+          <h3>Select address</h3>
           <SearchAddress
             onclick={this.suggestionSelected}
             onchange={this.addressInputHandler}

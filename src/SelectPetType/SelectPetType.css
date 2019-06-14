@@ -1,0 +1,12 @@
+.SelectPetType {
+  width: 100%;
+  border: 1px solid grey;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px 1px rgba(0, 0, 0, 0.18);
+}
+
+.SelectPetType select {
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  padding: 12px 6px;
+}

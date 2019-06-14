@@ -1,4 +1,5 @@
 import React from "react";
+import "./PetGender.css";
 
 const PetGender = ({ selectedGender, selectedGenderHandler, petGenders }) => {
   return (

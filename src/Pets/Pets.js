@@ -1,5 +1,6 @@
 import React from "react";
 import Pet from "../Pet/Pet";
+import "./Pets.css";
 
 const Pets = ({ pets, selectedPet, selectedGender, inputValue, showPets }) => {
   if (pets.length === 0) return <div>No pets</div>;
@@ -15,7 +16,7 @@ const Pets = ({ pets, selectedPet, selectedGender, inputValue, showPets }) => {
     filteredPets = filteredPets.filter(pet => pet.Address === inputValue);
 
   return (
-    <div>
+    <div className="Pets">
       {pets.length > 0
         ? filteredPets.map((pet, i) => {
             return (
