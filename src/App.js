@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import Pets from "./Pets/Pets";
 import SelectPetType from "./SelectPetType/SelectPetType";
 import PetGender from "./PetGender/PetGender";
-
+import SearchAddress from "./SearchAddress/SearchAddress";
+import Spinner from "./Spinner/Spinner";
 import "./App.css";
 
 import Tabletop from "tabletop";
-import SearchAddress from "./SearchAddress/SearchAddress";
 
 class App extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ Initialization that requires DOM nodes should go here. If you need to load
             animalType.push(el.animal_type)
           );
         });
-
+        // creates an array all the adresses from the api
         let animalAddress = [];
         googleData.map(el => {
           return (
@@ -47,15 +47,14 @@ Initialization that requires DOM nodes should go here. If you need to load
             animalAddress.push(el.Address)
           );
         });
-
+        // creates an array of all the pet's genders from the api
         let animalGenders = [];
         googleData.map(
           el =>
             !animalGenders.includes(el.Animal_Gender) &&
             animalGenders.push(el.Animal_Gender)
         );
-
-        console.log(googleData);
+        // sets state with the arays created above and the data from the api
         this.setState({
           pets: googleData,
           isLoading: false,
@@ -68,19 +67,20 @@ Initialization that requires DOM nodes should go here. If you need to load
     });
   }
 
+  // Sets state to the selected pet
   selectedPetHandler = e => {
     this.setState({
       selectedPet: e
     });
   };
-
+  // Sets state to the selected pet's gender
   selectGenderHandler = e => {
     this.setState({
       selectedGender: e.target.value
     });
     console.log("selected gender", e.target.value);
   };
-
+  // Sets state to the selected address and filters the suggested addresses
   addressInputHandler = e => {
     const { petAddress } = this.state;
     let value = e;
@@ -89,13 +89,14 @@ Initialization that requires DOM nodes should go here. If you need to load
       const regex = new RegExp(`^${value}`, "i");
       suggestionsS = petAddress.sort().filter(el => regex.test(el));
     }
-    console.log(e);
+
     this.setState({
       suggestions: suggestionsS,
       inputValue: value
     });
   };
 
+  // Sets state with the selected address from the suggestions list
   suggestionSelected = value => {
     this.setState({
       inputValue: value,
@@ -104,6 +105,7 @@ Initialization that requires DOM nodes should go here. If you need to load
   };
 
   render() {
+    // destructured state
     const {
       isLoading,
       pets,
@@ -116,7 +118,6 @@ Initialization that requires DOM nodes should go here. If you need to load
       petGenders
     } = this.state;
 
-    console.log(this.state);
     return (
       <div className="App">
         <h1>Pet Catalog</h1>
@@ -129,7 +130,7 @@ Initialization that requires DOM nodes should go here. If you need to load
         </div>
 
         <div className="App__searchAddress">
-          <h3>Select gender</h3>
+          <h3>Search by gender</h3>
           <PetGender
             selectedGenderHandler={this.selectGenderHandler}
             petGenders={petGenders}
@@ -138,7 +139,7 @@ Initialization that requires DOM nodes should go here. If you need to load
         </div>
 
         <div className="App__searchAddress">
-          <h3>Select address</h3>
+          <h3>Search by address</h3>
           <SearchAddress
             onclick={this.suggestionSelected}
             onchange={this.addressInputHandler}
@@ -148,12 +149,12 @@ Initialization that requires DOM nodes should go here. If you need to load
           />
         </div>
 
-        {/* If isLoading property is false and the array pets is no empty anymore,
-         the .map method will iterate through the array and will return a list of 
-         all the pets in the array*/}
+        {/* 
+        If Is loading property is true the spinner will show otherwise a list of all the pets will be rendered
+        */}
 
         {isLoading ? (
-          <div>Loading...</div>
+          <Spinner />
         ) : (
           <Pets
             pets={pets}
