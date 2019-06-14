@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Pet from "./Pet/Pet";
+import Pets from "./Pets/Pets";
 import SelectPetType from "./SelectPetType/SelectPetType";
 import PetGender from "./PetGender/PetGender";
 
@@ -105,6 +105,8 @@ Initialization that requires DOM nodes should go here. If you need to load
       suggestions,
       inputValue
     } = this.state;
+
+    console.log(this.state);
     return (
       <div className="App">
         <h1>Pet Catalog</h1>
@@ -132,40 +134,16 @@ Initialization that requires DOM nodes should go here. If you need to load
          the .map method will iterate through the array and will return a list of 
          all the pets in the array*/}
 
-        {!isLoading &&
-        pets.length > 0 &&
-        selectedPet.length > 0 &&
-        !selectedGender
-          ? pets
-              .filter(pet => {
-                return pet.animal_type === selectedPet;
-              })
-              .map((pet, i) => {
-                return (
-                  <Pet
-                    key={pet.Animal_ID + i}
-                    name={pet.Animal_Name}
-                    petType={pet.animal_type}
-                    petBreed={pet.Animal_Breed}
-                    petLocation={pet.Address}
-                  />
-                );
-              })
-          : pets
-              .filter(pet => pet.Animal_Gender === selectedGender)
-              .map((pet, i) => {
-                return (
-                  <Pet
-                    key={pet.Animal_ID + i}
-                    name={pet.Animal_Name}
-                    petType={pet.animal_type}
-                    petGender={pet.Animal_Gender}
-                    petBreed={pet.Animal_Breed}
-                    petLocation={pet.Address}
-                  />
-                );
-              })}
-        {isLoading ? <div>Loading...</div> : null}
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <Pets
+            pets={pets}
+            selectedPet={selectedPet}
+            selectedGender={selectedGender}
+            inputValue={inputValue}
+          />
+        )}
       </div>
     );
   }
