@@ -1,33 +1,18 @@
 import React from "react";
 
-const PetGender = ({ selectedGender, selectedGenderHandler }) => {
+const PetGender = ({ selectedGender, selectedGenderHandler, petGenders }) => {
   return (
-    <fieldset>
-      <legend>Pet gender</legend>
-      <label>
-        <input
-          id="male"
-          onChange={e => selectedGenderHandler(e)}
-          value="Male"
-          type="radio"
-          name="pet-gender"
-          checked={selectedGender === "Male"}
-        />
-        Male
-      </label>
-
-      <label>
-        <input
-          onChange={e => selectedGenderHandler(e)}
-          value="Female"
-          id="female"
-          type="radio"
-          name="pet-gender"
-          checked={selectedGender === "Female"}
-        />{" "}
-        Female
-      </label>
-    </fieldset>
+    <div className="PetGender">
+      <select onChange={selectedGenderHandler}>
+        {petGenders.map((gender, i) => {
+          return (
+            <option key={i} value={gender}>
+              {gender}
+            </option>
+          );
+        })}
+      </select>
+    </div>
   );
 };
 

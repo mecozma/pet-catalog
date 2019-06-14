@@ -15,6 +15,7 @@ class App extends Component {
       isLoading: true,
       pets: [],
       petType: [],
+      petGenders: [],
       selectedPet: "",
       selectedGender: "",
       petAddress: [],
@@ -47,12 +48,20 @@ Initialization that requires DOM nodes should go here. If you need to load
           );
         });
 
+        let animalGenders = [];
+        googleData.map(
+          el =>
+            !animalGenders.includes(el.Animal_Gender) &&
+            animalGenders.push(el.Animal_Gender)
+        );
+
         console.log(googleData);
         this.setState({
           pets: googleData,
           isLoading: false,
           petType: animalType,
-          petAddress: animalAddress
+          petAddress: animalAddress,
+          petGenders: animalGenders
         });
       },
       simpleSheet: true
@@ -103,7 +112,8 @@ Initialization that requires DOM nodes should go here. If you need to load
       selectedGender,
       petAddress,
       suggestions,
-      inputValue
+      inputValue,
+      petGenders
     } = this.state;
 
     console.log(this.state);
@@ -118,6 +128,7 @@ Initialization that requires DOM nodes should go here. If you need to load
         <PetGender
           selectedGenderHandler={this.selectGenderHandler}
           selectedGender={selectedGender}
+          petGenders={petGenders}
         />
 
         <div className="App__searchAddress">
