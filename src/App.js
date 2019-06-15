@@ -4,6 +4,7 @@ import SelectPetType from "./SelectPetType/SelectPetType";
 import PetGender from "./PetGender/PetGender";
 import SearchAddress from "./SearchAddress/SearchAddress";
 import Spinner from "./Spinner/Spinner";
+import Button from "./Button/Button";
 import "./App.css";
 
 import Tabletop from "tabletop";
@@ -20,7 +21,8 @@ class App extends Component {
       selectedGender: "",
       petAddress: [],
       suggestions: [],
-      inputValue: ""
+      inputValue: "",
+      showPets: false
     };
   }
 
@@ -32,7 +34,7 @@ Initialization that requires DOM nodes should go here. If you need to load
     Tabletop.init({
       key: "1IS_wjEiG_nUrnoOa49wOijx2Fgg5inYHYzpZePPnfn0",
       callback: googleData => {
-        let animalType = ["All Pets"];
+        let animalType = ["All pet types"];
         googleData.map(el => {
           return (
             !animalType.includes(el.animal_type) &&
@@ -48,7 +50,7 @@ Initialization that requires DOM nodes should go here. If you need to load
           );
         });
         // creates an array of all the pet's genders from the api
-        let animalGenders = [];
+        let animalGenders = ["All genders"];
         googleData.map(
           el =>
             !animalGenders.includes(el.Animal_Gender) &&
@@ -104,6 +106,25 @@ Initialization that requires DOM nodes should go here. If you need to load
     });
   };
 
+  giveMePetsHandler = () => {
+    this.setState({
+      showPets: true
+    });
+    console.log("Give me pets");
+  };
+
+  clearSelectionHandler = () => {
+    this.setState({
+      showPets: false,
+      selectedPet: "",
+      selectedGender: "",
+      petAddress: [],
+     
+      inputValue: ""
+    });
+    console.log("Clear selection");
+  };
+
   render() {
     // destructured state
     const {
@@ -115,14 +136,15 @@ Initialization that requires DOM nodes should go here. If you need to load
       petAddress,
       suggestions,
       inputValue,
-      petGenders
+      petGenders,
+      showPets
     } = this.state;
 
     return (
       <div className="App">
         <h1>Pet Catalog</h1>
         <div className="App__searchAddress">
-          <h3>Select pet category</h3>
+          
           <SelectPetType
             selectedPetHandler={this.selectedPetHandler}
             petType={petType}
@@ -130,7 +152,7 @@ Initialization that requires DOM nodes should go here. If you need to load
         </div>
 
         <div className="App__searchAddress">
-          <h3>Search by gender</h3>
+          
           <PetGender
             selectedGenderHandler={this.selectGenderHandler}
             petGenders={petGenders}
@@ -139,7 +161,7 @@ Initialization that requires DOM nodes should go here. If you need to load
         </div>
 
         <div className="App__searchAddress">
-          <h3>Search by address</h3>
+         
           <SearchAddress
             onclick={this.suggestionSelected}
             onchange={this.addressInputHandler}
@@ -148,7 +170,12 @@ Initialization that requires DOM nodes should go here. If you need to load
             suggestions={suggestions}
           />
         </div>
-
+        <Button clicked={this.giveMePetsHandler} btnType="Success">
+          Give me pets
+        </Button>
+        <Button clicked={this.clearSelectionHandler} btnType="Danger">
+          Clear selection
+        </Button>
         {/* 
         If Is loading property is true the spinner will show otherwise a list of all the pets will be rendered
         */}
@@ -161,6 +188,7 @@ Initialization that requires DOM nodes should go here. If you need to load
             selectedPet={selectedPet}
             selectedGender={selectedGender}
             inputValue={inputValue}
+            showPets={showPets}
           />
         )}
       </div>

@@ -1,14 +1,28 @@
 .SearchAddress {
-  width: 100%;
-  border: 1px solid grey;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px 1px rgba(0, 0, 0, 0.18);
+  background: #fff;
+  border: 1px solid #dfe1e5;
+  box-shadow: none;
+  border-radius: 24px;
+  height: 44px;
+  margin: 0 auto;
+  width: 482px;
+  z-index: 100;
 }
 
 .SearchAddress input {
   width: 100%;
-  border: none;
   box-sizing: border-box;
-  padding: 12px 6px;
+  padding: 12px 6px 12px 8px;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.87);
+  word-wrap: break-word;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .SearchAddress ul {
@@ -16,7 +30,6 @@
   text-align: left;
   margin: 0;
   padding: 0;
-  border-top: 1px solid gray;
 }
 
 .SearchAddress ul::before {
@@ -26,8 +39,22 @@
 .SearchAddress ul li {
   padding: 12px 6px;
   cursor: pointer;
+  padding: 0;
+}
+
+.SearchAddress ul li:first-child {
+  background-color: #ccc;
 }
 
 .SearchAddress ul li:hover {
   background-color: #ccc;
+}
+
+.SearchAddress::-ms-expand {
+  display: none;
+}
+
+.SearchAddress:hover {
+  box-shadow: 0 0 1px 2px #ccc;
+  transition: box-shadow 300ms ease-in-out, opacity 200ms;
 }

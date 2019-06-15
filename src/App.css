@@ -1,7 +1,11 @@
 .App {
   text-align: center;
   font-family: "Roboto", sans-serif;
-  margin: 0 20px 0 20px;
+  margin: 50px 20px 0 20px;
+}
+
+.App h1 {
+  font-size: 48px;
 }
 
 .App__searchAddress {

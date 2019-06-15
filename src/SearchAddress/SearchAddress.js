@@ -20,7 +20,7 @@ const SearchAddress = ({ onchange, suggestions, text, onclick }) => {
         value={text}
         onChange={e => onchange(e.target.value)}
         type="text"
-        placeholder="15405 DES MOINES MEMORIAL DRIVE"
+        placeholder="Search by address"
       />
       <ul>{suggestion}</ul>
     </div>

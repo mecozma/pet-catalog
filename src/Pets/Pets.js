@@ -3,7 +3,7 @@ import Pet from "../Pet/Pet";
 import "./Pets.css";
 
 const Pets = ({ pets, selectedPet, selectedGender, inputValue, showPets }) => {
-  if (pets.length === 0) return <div>No pets</div>;
+ 
   let filteredPets = [...pets];
 
   if (selectedPet && selectedPet !== "All Pets")
@@ -14,10 +14,10 @@ const Pets = ({ pets, selectedPet, selectedGender, inputValue, showPets }) => {
     );
   if (inputValue)
     filteredPets = filteredPets.filter(pet => pet.Address === inputValue);
-
+    if (filteredPets.length === 0) return <div>No pets</div>;
   return (
     <div className="Pets">
-      {pets.length > 0
+      {showPets
         ? filteredPets.map((pet, i) => {
             return (
               <Pet

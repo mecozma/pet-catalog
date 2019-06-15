@@ -6,7 +6,7 @@
   box-shadow: 0 2px 3px #ccc;
   text-align: center;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 
@@ -20,4 +20,5 @@
 
 .Pet__description {
   text-align: left;
+  max-width: 250px;
 }
