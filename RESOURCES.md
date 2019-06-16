@@ -13,5 +13,7 @@ www.unsplash.com for stock pictures.
 
 The loading spinner comes from here: https://projects.lukehaas.me/css-loaders/
 
+How to deploy a react app to github-pages: https://reactgo.com/deploy-react-app-github-pages/
+
 www.google.ie , because without the use of Google I wouldn't have known about any of the above resources.
 

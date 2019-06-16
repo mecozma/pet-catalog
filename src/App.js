@@ -168,7 +168,7 @@ Initialization that requires DOM nodes should go here. If you need to load
           />
         </div>
         <Button clicked={this.clearSelectionHandler} btnType="Danger">
-          Clear selection
+          Clear pets
         </Button>
         <Button clicked={this.giveMePetsHandler} btnType="Success">
           Give me pets

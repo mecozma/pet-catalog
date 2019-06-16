@@ -1,3 +1,19 @@
+<!-- Steps to follow to use the app locally -->
+
+1 Download the repo or clone it on your device (git clone https://github.com/mecozma/pet-catalog.git);
+2 cd pet-catalog;
+3 npm install;
+4 npm start;
+
+<!-- App description -->
+For this app, I used React.js library, Css3 and HTML5.
+The app gives the user the possibility to search and filter a Google spreadsheet. This is possible with the use of Tabletop.js.
+To interact with the database, the user is provided with two fields input type select, and one input type text.
+Also, there are two buttons to show the pets after the user selected the preferences, and another one to hide the pets while she makes another selection.
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
