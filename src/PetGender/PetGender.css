@@ -5,7 +5,7 @@
   border-radius: 24px;
   height: 44px;
   margin: 0 auto;
-  width: 482px;
+  max-width: 482px;
 }
 
 .PetGender select {

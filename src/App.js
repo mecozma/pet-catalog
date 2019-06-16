@@ -5,7 +5,7 @@ import PetGender from "./PetGender/PetGender";
 import SearchAddress from "./SearchAddress/SearchAddress";
 import Spinner from "./Spinner/Spinner";
 import Button from "./Button/Button";
-import "./App.css";
+import classes from "./App.module.css";
 
 import Tabletop from "tabletop";
 
@@ -119,7 +119,7 @@ Initialization that requires DOM nodes should go here. If you need to load
       selectedPet: "",
       selectedGender: "",
       petAddress: [],
-     
+
       inputValue: ""
     });
     console.log("Clear selection");
@@ -141,18 +141,16 @@ Initialization that requires DOM nodes should go here. If you need to load
     } = this.state;
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Pet Catalog</h1>
-        <div className="App__searchAddress">
-          
+        <div className={classes.App__searchField}>
           <SelectPetType
             selectedPetHandler={this.selectedPetHandler}
             petType={petType}
           />
         </div>
 
-        <div className="App__searchAddress">
-          
+        <div className={classes.App__searchField}>
           <PetGender
             selectedGenderHandler={this.selectGenderHandler}
             petGenders={petGenders}
@@ -160,8 +158,7 @@ Initialization that requires DOM nodes should go here. If you need to load
           />
         </div>
 
-        <div className="App__searchAddress">
-         
+        <div className={classes.App__searchField}>
           <SearchAddress
             onclick={this.suggestionSelected}
             onchange={this.addressInputHandler}
@@ -170,11 +167,11 @@ Initialization that requires DOM nodes should go here. If you need to load
             suggestions={suggestions}
           />
         </div>
-        <Button clicked={this.giveMePetsHandler} btnType="Success">
-          Give me pets
-        </Button>
         <Button clicked={this.clearSelectionHandler} btnType="Danger">
           Clear selection
+        </Button>
+        <Button clicked={this.giveMePetsHandler} btnType="Success">
+          Give me pets
         </Button>
         {/* 
         If Is loading property is true the spinner will show otherwise a list of all the pets will be rendered

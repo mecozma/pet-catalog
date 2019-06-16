@@ -1,3 +1,6 @@
-/* .Pets {
+.Pets {
   display: flex;
-} */
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 1000px;
+}

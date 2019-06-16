@@ -4,8 +4,7 @@ import "./PetGender.css";
 const PetGender = ({ selectedGender, selectedGenderHandler, petGenders }) => {
   return (
     <div className="PetGender">
-      <select
-       onChange={selectedGenderHandler}>
+      <select onChange={selectedGenderHandler}>
         {petGenders.map((gender, i) => {
           return (
             <option key={i} value={gender}>

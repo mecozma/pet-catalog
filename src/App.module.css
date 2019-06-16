@@ -1,0 +1,24 @@
+.App {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  margin: 50px 20px 0 20px;
+}
+
+.App h1 {
+  font-size: 28px;
+  font-family: inherit;
+}
+
+.App__searchField {
+  margin: 50px auto;
+  max-width: 600px;
+}
+
+/* Media queries */
+
+@media (min-width: 600px) {
+  .App h1 {
+    font-size: 48px;
+    font-family: inherit;
+  }
+}

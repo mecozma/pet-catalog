@@ -1,5 +1,5 @@
 .Pet {
-  max-width: 600px;
+  max-width: 500px;
   padding: 10px;
   margin: 16px auto;
   border: 1px solid #eee;
@@ -10,15 +10,33 @@
   flex-wrap: wrap;
 }
 
-.Pet__image {
-  max-width: 300px;
-}
-
 .Pet__image img {
   width: 100%;
 }
 
 .Pet__description {
+  padding-top: 12px;
   text-align: left;
-  max-width: 250px;
+  max-width: 200px;
+}
+
+h3,
+h4 {
+  font-weight: bold;
+  line-height: 1.5;
+}
+h3 span,
+h4 span {
+  font-weight: normal;
+}
+
+@media (min-width: 600px) {
+  .Pet__image {
+    max-width: 200px;
+  }
+
+  .Pet__description {
+    padding-top: 0;
+    padding-left: 12px;
+  }
 }

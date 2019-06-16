@@ -11,11 +11,21 @@ const Pet = props => {
         />
       </div>
       <div className="Pet__description">
-        <h3>Pet type: {props.petType}.</h3>
-        <h4>Breed: {props.petBreed}</h4>
-        <h4>Name: {props.name}</h4>
-        <h4>Gender: {props.petGender}</h4>
-        <h5>Pet location: {props.petLocation}</h5>
+        <h3>
+          Pet type: <span>{props.petType}</span>.
+        </h3>
+        <h4>
+          Breed: <span>{props.petBreed}</span>.
+        </h4>
+        <h4>
+          Name: <span>{props.name}</span>.
+        </h4>
+        <h4>
+          Gender: <span>{props.petGender}</span>.
+        </h4>
+        <h4>
+          Pet location: <span>{props.petLocation}</span>.
+        </h4>
       </div>
     </div>
   );
