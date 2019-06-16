@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/pet-catalog/static/css/main.f91634f2.chunk.css",
-    "main.js": "/pet-catalog/static/js/main.a1a15ae4.chunk.js",
-    "main.js.map": "/pet-catalog/static/js/main.a1a15ae4.chunk.js.map",
+    "main.js": "/pet-catalog/static/js/main.9ca77e24.chunk.js",
+    "main.js.map": "/pet-catalog/static/js/main.9ca77e24.chunk.js.map",
     "runtime~main.js": "/pet-catalog/static/js/runtime~main.a3017f40.js",
     "runtime~main.js.map": "/pet-catalog/static/js/runtime~main.a3017f40.js.map",
     "static/js/2.ffa40dd3.chunk.js": "/pet-catalog/static/js/2.ffa40dd3.chunk.js",
     "static/js/2.ffa40dd3.chunk.js.map": "/pet-catalog/static/js/2.ffa40dd3.chunk.js.map",
     "index.html": "/pet-catalog/index.html",
-    "precache-manifest.d6877fd116150f28b696cf671dd28a29.js": "/pet-catalog/precache-manifest.d6877fd116150f28b696cf671dd28a29.js",
+    "precache-manifest.53a9caf19e38899f7dc00b321a16c7eb.js": "/pet-catalog/precache-manifest.53a9caf19e38899f7dc00b321a16c7eb.js",
     "service-worker.js": "/pet-catalog/service-worker.js",
     "static/css/main.f91634f2.chunk.css.map": "/pet-catalog/static/css/main.f91634f2.chunk.css.map"
   }
